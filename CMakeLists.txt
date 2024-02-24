@@ -4,8 +4,8 @@ project(finite_automata)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(finite_automata main.cpp
-        DeterminedFiniteAutomataState.cpp
-        DeterminedFiniteAutomataState.h
-        DeterminedFiniteAutomata.cpp
-        DeterminedFiniteAutomata.h
+        DeterministicFiniteAutomataState.cpp
+        DeterministicFiniteAutomataState.h
+        DeterministicFiniteAutomata.cpp
+        DeterministicFiniteAutomata.h
 )

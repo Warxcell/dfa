@@ -5,19 +5,19 @@
 
 using namespace std;
 
-#include "DeterminedFiniteAutomataState.h"
-#include "DeterminedFiniteAutomata.h"
+#include "DeterministicFiniteAutomataState.h"
+#include "DeterministicFiniteAutomata.h"
 
 
 int main() {
     auto
-            *q0 = new DeterminedFiniteAutomataState("q0", false),
-            *q1 = new DeterminedFiniteAutomataState("q1", false),
-            *q2 = new DeterminedFiniteAutomataState("q2", false),
-            *q3 = new DeterminedFiniteAutomataState("q3", false),
-            *q4 = new DeterminedFiniteAutomataState("q4", false),
-            *q5 = new DeterminedFiniteAutomataState("q5", false),
-            *q6 = new DeterminedFiniteAutomataState("q6", true);
+            *q0 = new DeterministicFiniteAutomataState("q0", false),
+            *q1 = new DeterministicFiniteAutomataState("q1", false),
+            *q2 = new DeterministicFiniteAutomataState("q2", false),
+            *q3 = new DeterministicFiniteAutomataState("q3", false),
+            *q4 = new DeterministicFiniteAutomataState("q4", false),
+            *q5 = new DeterministicFiniteAutomataState("q5", false),
+            *q6 = new DeterministicFiniteAutomataState("q6", true);
 
     q0->addMap('1', q1);
     q1->addMap('0', q2);
@@ -32,8 +32,7 @@ int main() {
     q6->addMap('0', q4);
     q6->addMap('1', q4);
 
-
-    auto automata = DeterminedFiniteAutomata(q0);
+    auto automata = DeterministicFiniteAutomata(q0);
 
     string word;
     do {

@@ -1,9 +1,9 @@
-#include "DeterminedFiniteAutomata.h"
+#include "DeterministicFiniteAutomata.h"
 #include <iostream>
 
-DeterminedFiniteAutomata::DeterminedFiniteAutomata(DeterminedFiniteAutomataState *initialState) : initialState(initialState) {}
+DeterministicFiniteAutomata::DeterministicFiniteAutomata(DeterministicFiniteAutomataState *initialState) : initialState(initialState) {}
 
-bool DeterminedFiniteAutomata::recognizes(const std::string &word) {
+bool DeterministicFiniteAutomata::recognizes(const std::string &word) {
     auto state = this->initialState;
 
     for (int i = 0; i < word.size(); i++) {
