@@ -22,7 +22,7 @@ public:
 
     bool isFinal() const;
 
-    const string getName() const;
+    string getName() const;
 };
 
 

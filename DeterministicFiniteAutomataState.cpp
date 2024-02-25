@@ -22,6 +22,6 @@ bool DeterministicFiniteAutomataState::isFinal() const {
     return this->final;
 }
 
-const std::string DeterministicFiniteAutomataState::getName() const {
+std::string DeterministicFiniteAutomataState::getName() const {
     return name;
 }
