@@ -1,18 +1,21 @@
 #include "DeterministicFiniteAutomataState.h"
 
-DeterministicFiniteAutomataState::DeterministicFiniteAutomataState(std::string name, bool final) : name(name), final(final) {
+#include <utility>
+
+DeterministicFiniteAutomataState::DeterministicFiniteAutomataState(std::string name, bool final) : name(
+        std::move(name)), final(final) {
 }
 
 void DeterministicFiniteAutomataState::addMap(char c, DeterministicFiniteAutomataState *state) {
-    this->map[c] = state;
+    this->letterToStateMapping[c] = state;
 }
 
 bool DeterministicFiniteAutomataState::has(char c) {
-    return this->map.contains(c);
+    return this->letterToStateMapping.contains(c);
 }
 
 DeterministicFiniteAutomataState *DeterministicFiniteAutomataState::get(char c) {
-    return this->map[c];
+    return this->letterToStateMapping[c];
 }
 
 bool DeterministicFiniteAutomataState::isFinal() const {

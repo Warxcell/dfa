@@ -7,31 +7,48 @@ using namespace std;
 
 #include "DeterministicFiniteAutomataState.h"
 #include "DeterministicFiniteAutomata.h"
+#include "NonDeterministicFiniteAutomataState.h"
+#include "NonDeterministicFiniteAutomata.h"
 
 int main() {
-    auto
-            *q0 = new DeterministicFiniteAutomataState("q0", false),
-            *q1 = new DeterministicFiniteAutomataState("q1", false),
-            *q2 = new DeterministicFiniteAutomataState("q2", false),
-            *q3 = new DeterministicFiniteAutomataState("q3", false),
-            *q4 = new DeterministicFiniteAutomataState("q4", false),
-            *q5 = new DeterministicFiniteAutomataState("q5", false),
-            *q6 = new DeterministicFiniteAutomataState("q6", true);
+//    auto
+//            *q0 = new DeterministicFiniteAutomataState("q0", false),
+//            *q1 = new DeterministicFiniteAutomataState("q1", false),
+//            *q2 = new DeterministicFiniteAutomataState("q2", false),
+//            *q3 = new DeterministicFiniteAutomataState("q3", false),
+//            *q4 = new DeterministicFiniteAutomataState("q4", false),
+//            *q5 = new DeterministicFiniteAutomataState("q5", false),
+//            *q6 = new DeterministicFiniteAutomataState("q6", true);
+//
+//    q0->addMap('1', q1);
+//    q1->addMap('0', q2);
+//    q2->addMap('0', q3);
+//    q2->addMap('1', q3);
+//    q3->addMap('0', q4);
+//    q3->addMap('1', q4);
+//    q4->addMap('0', q5);
+//    q4->addMap('1', q5);
+//    q5->addMap('0', q6);
+//    q5->addMap('1', q3);
+//    q6->addMap('0', q4);
+//    q6->addMap('1', q4);
 
-    q0->addMap('1', q1);
-    q1->addMap('0', q2);
-    q2->addMap('0', q3);
-    q2->addMap('1', q3);
-    q3->addMap('0', q4);
-    q3->addMap('1', q4);
-    q4->addMap('0', q5);
-    q4->addMap('1', q5);
-    q5->addMap('0', q6);
-    q5->addMap('1', q3);
-    q6->addMap('0', q4);
-    q6->addMap('1', q4);
+//   const auto automata = DeterministicFiniteAutomata(q0);
 
-    auto automata = DeterministicFiniteAutomata(q0);
+    vector<NonDeterministicFiniteAutomataState *> statesNdka = {
+            new NonDeterministicFiniteAutomataState(false),
+            new NonDeterministicFiniteAutomataState(true)
+    };
+    vector<char> symbols = {
+            'H',
+            'T'
+    };
+
+    statesNdka[0]->addMap('H', statesNdka[0]);
+    statesNdka[0]->addMap('T', statesNdka[0]);
+    statesNdka[0]->addMap('T', statesNdka[1]);
+
+    auto automata = NonDeterministicFiniteAutomata(statesNdka, symbols);
 
     string word;
     do {

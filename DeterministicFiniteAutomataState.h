@@ -4,13 +4,15 @@
 #include <map>
 #include <string>
 
+using namespace std;
+
 class DeterministicFiniteAutomataState {
 private:
-    std::string name;
+    string name;
     bool final;
-    std::map<char, DeterministicFiniteAutomataState *> map;
+    map<char, DeterministicFiniteAutomataState *> letterToStateMapping;
 public:
-    explicit DeterministicFiniteAutomataState(std::string name, bool final = false);
+    explicit DeterministicFiniteAutomataState(string name, bool final = false);
 
     void addMap(char c, DeterministicFiniteAutomataState *state);
 
@@ -20,7 +22,7 @@ public:
 
     bool isFinal() const;
 
-    const std::string getName() const;
+    const string getName() const;
 };
 
 

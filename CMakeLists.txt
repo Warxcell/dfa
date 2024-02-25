@@ -10,4 +10,8 @@ add_executable(finite_automata main.cpp
         DeterministicFiniteAutomata.h
         FiniteAutomata.cpp
         FiniteAutomata.h
+        NonDeterministicFiniteAutomataState.cpp
+        NonDeterministicFiniteAutomataState.h
+        NonDeterministicFiniteAutomata.cpp
+        NonDeterministicFiniteAutomata.h
 )
