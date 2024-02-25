@@ -4,14 +4,15 @@
 
 #include "DeterministicFiniteAutomataState.h"
 #include <string>
+#include "FiniteAutomata.h"
 
-class DeterministicFiniteAutomata {
+class DeterministicFiniteAutomata : public FiniteAutomata {
 private:
     DeterministicFiniteAutomataState *initialState;
 public:
     explicit DeterministicFiniteAutomata(DeterministicFiniteAutomataState *initialState);
 
-    bool recognizes(const std::string &word);
+    expected<Recognized, NotRecognized> recognizes(const string &word) override;
 };
 
 

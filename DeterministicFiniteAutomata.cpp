@@ -1,33 +1,36 @@
 #include "DeterministicFiniteAutomata.h"
-#include <iostream>
 
-DeterministicFiniteAutomata::DeterministicFiniteAutomata(DeterministicFiniteAutomataState *initialState) : initialState(initialState) {}
+DeterministicFiniteAutomata::DeterministicFiniteAutomata(DeterministicFiniteAutomataState *initialState) : initialState(
+        initialState) {}
 
-bool DeterministicFiniteAutomata::recognizes(const std::string &word) {
+expected<DeterministicFiniteAutomata::Recognized, DeterministicFiniteAutomata::NotRecognized>
+DeterministicFiniteAutomata::recognizes(const string &word) {
+
     auto state = this->initialState;
 
     for (int i = 0; i < word.size(); i++) {
         char letter = word[i];
         if (!state->has(letter)) {
-            std::cout << "Не разпознава, защото буквата " << letter << " на позиция " << i << " няма преход от "
-                      << state->getName() << std::endl;
+            NotRecognized da = NotRecognized(
+                    "буквата " + (string(1, letter)) + " на позиция " + to_string(i) +
+                    " няма преход от "
+                    + state->getName()
+            );
 
-            return false;
+            return std::unexpected(da);
         }
 
-        std::cout << "Буква " << letter << " на позиция " << i << " води от състояние " << state->getName() << " към ";
-
         state = state->get(letter);
-
-        std::cout << state->getName() << std::endl;
     }
 
-    if (!state->isFinal()) {
-        std::cout << "Не разпознава, защото последното състояние " << state->getName() << " не е заключително"
-                  << std::endl;
+
+    if (state->isFinal()) {
+        Recognized da = Recognized();
+        return da;
     } else {
-        std::cout << "разпознава" << std::endl;
+        NotRecognized da = NotRecognized(
+                "последното състояние " + state->getName() + " не е заключително"
+        );
+        return std::unexpected(da);
     }
-
-    return state->isFinal();
 }

@@ -8,7 +8,6 @@ using namespace std;
 #include "DeterministicFiniteAutomataState.h"
 #include "DeterministicFiniteAutomata.h"
 
-
 int main() {
     auto
             *q0 = new DeterministicFiniteAutomataState("q0", false),
@@ -43,6 +42,12 @@ int main() {
             return 0;
         }
 
-        automata.recognizes(word);
+        const auto result = automata.recognizes(word);
+
+        if (result.has_value()) {
+            cout << "Разпознава" << endl;
+        } else {
+            cout << "НЕ Разпознава, причина: " << result.error().reason << endl;
+        }
     } while (true);
 }
